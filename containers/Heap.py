@@ -1,13 +1,9 @@
 '''
-This file implements the Heap data structure as a subclass of the BinaryTree.
-The book implements Heaps using an *implicit* tree with an *explicit* vector
 implementation,
 so the code in the book is likely to be less helpful than the code for the
 other data structures.
-The book's implementation is the traditional implementation because it has a
 faster constant factor
 (but the same asymptotics).
-This homework is using an explicit tree implementation to help you get more
 practice with OOP-style programming and classes.
 '''
 
@@ -30,7 +26,6 @@ class Heap(BinaryTree):
         '''
         super().__init__()
         self.num_nodes = 0
-        self.size = 0
         if xs:
             self.insert_list(xs)
 
@@ -39,14 +34,12 @@ class Heap(BinaryTree):
         Notice that in the BinaryTree class,
         we defined a __str__ function,
         but not a __repr__ function.
-        Recall that the __repr__ function should return a string that can be
         used to recreate a valid instance of the class.
         Thus, if you create a variable using the command Heap([1,2,3])
         it's __repr__ will return "Heap([1,2,3])"
 
         For the Heap, type(self).__name__ will be the string "Heap",
         but for the AVLTree, this expression will be "AVLTree".
-        Using this expression ensures that all subclasses of Heap will have a
         correct implementation of __repr__,
         and that they won't have to reimplement it.
         '''
@@ -148,9 +141,7 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
-        if len(self.to_list('postorder')) == 0:
-            return 'empty'
-        return min(self.to_list('postorder'))
+        return self.root.value
 
     def remove_min(self):
         '''
@@ -177,16 +168,13 @@ class Heap(BinaryTree):
         if self.root is None:
             return 'no min'
         binary = bin(self.num_nodes)[3:]
+         self.num_nodes -= 1
         removed = Heap._remove_bottom_right(self.root, binary)
         self.root.value = removed
         Heap._trickle(self.root)
-        self.num_nodes -= 1
 
     @staticmethod
     def _remove_bottom_right(node, binary):
-        '''
-        Removes the bottom right node from the tree.
-        '''
         ret = None
         if node.left and binary[0] == '0':
             if len(binary) == 1:
