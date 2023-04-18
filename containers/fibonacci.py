@@ -1,17 +1,8 @@
 
-<<<<<<< HEAD
 ##################################################
 # example fibonacci number code;
 # you do not have to modify this code in any way
 ###################################################
-=======
-################################################
-################################
-# example fibonacci number code;
-# you do not have to modify this code in any way
-###############################################
-#################################
->>>>>>> heap
 
 
 def fibs(n):
@@ -55,25 +46,17 @@ def fib(n):
     return f2
 
 
-<<<<<<< HEAD
 ####################################################
 # fibonacci number code using generators;
 # you will need to implement the functions below
 ####################################################
-=======
-#######################################################
-#########################
-# fibonacci number code using generators;
-# you will need to implement the functions below
-#######################################################
-#########################
->>>>>>> heap
 
 
 class Fib:
     '''
     This class represents all the fibonacci numbers,
     but uses O(1) memory to do so.
+
     >>> list(Fib(5))
     [1, 1, 2, 3, 5]
     '''
@@ -96,7 +79,6 @@ class FibIter:
     '''
     def __init__(self, n=None):
         self.n = n
-<<<<<<< HEAD
         self.i = 0
         self.f0 = 0
         self.f1 = 1
@@ -112,25 +94,6 @@ class FibIter:
             self.f0 = self.f1
             self.f1 = self.f2
             return self.f2
-=======
-        self.fib0 = 1
-        self.fib1 = 1
-        self.i = 0
-
-    def __next__(self):
-        if self.n is None:
-            c = self.fib0
-            self.fib0, self.fib1 = self.fib1, self.fib1 + self.fib0
-            return c
-        if self.n:
-            if self.i > (self.n - 1):
-                raise StopIteration
-            else:
-                self.i += 1
-                c = self.fib0
-                self.fib0, self.fib1 = self.fib1, self.fib0 + self.fib1
-                return c
->>>>>>> heap
 
 
 def fib_yield(n=None):
@@ -139,7 +102,6 @@ def fib_yield(n=None):
     the first n fibonacci numbers.
     If n is None, then the generator is infinite.
     '''
-<<<<<<< HEAD
     f1 = 1
     f0 = 1
 
@@ -161,24 +123,3 @@ def fib_yield(n=None):
             f0 = f1
             f1 = f2
             yield f2
-=======
-    fib0 = 1
-    fib1 = 1
-    fib2 = 0
-    total = 0
-
-    if n is None:
-        yield fib0
-        fib0
-        fib2 = fib0 + fib1
-        fib0 = fib1
-        fib1 = fib2
-
-    if n is not None:
-        while total < n:
-            yield fib0
-            fib2 = fib0 + fib1
-            fib0 = fib1
-            fib1 = fib2
-            total += 1
->>>>>>> heap
